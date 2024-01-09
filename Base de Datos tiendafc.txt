@@ -1,0 +1,52 @@
+USE tiendafc;
+
+CREATE TABLE productos(
+codpro int primary key auto_increment,
+descripcion varchar(100) not null,
+precio numeric(8,2) not null,
+stock int not null,
+estado varchar(30) not null,
+detalle varchar(1000) not null,
+imagen varchar(50) not null);
+
+insert into productos values(null,'Televisor',1800,15,'Normal','Televisor de 19 pulgadas especial con modo futbol, pantalla curva full HD','Televisor.jpg');
+
+insert into productos values(null,'Radio',1200,20,'Oferta','Radio de 300 watts de salida incluye puertos USB y conexion blue too','Radio.jpg')
+
+insert into productos values(null,'Cocina',800,30,'Normal','Cocia de 6 hornillas con horno extra grande para cocinar sus comidas con un cocido especial','Cocina.jpg');
+
+insert into productos values(null,'Licuadora',400,27,'Normal','Licuadora de 10 velocidades para preparar todo tipo de jugos y comidas','Licuadora.jpg');
+
+insert into productos values(null,'Plancha',300,42,'Oferta','Plancha a vapor con aplicaciones de agua para planchar ternos y ropa pesada','Plancha.jpg');
+
+insert into productos values(null,'Dvd',300,16,'Normal','Dvd que permite ver todas tus peliculas en formato HD, ademas cuenta con puertos USB y conexión inalambrica','Dvd.jpg');
+
+insert into productos values(null,'Blu Ray',350,26,'Normal','Blue Ray qye permitira ver todas tus peliculas con formato HD, ademas cuenta por puertos USB y conexion inalambrica','BluRay.jpg');
+
+insert into productos values(null,'Batidora',180,22,'Normal','Televisor de 19 pulgadas especial con modo futbol, pantalla curva full HD','Televisor.jpg');
+
+insert into productos values(null,'Horno',700,28,'Normal','Horno especial para cocido extra fuerte,especial para lechones, pavos y todo tipo de carnes','Horno.jpg');
+
+
+CREATE TABLE clientes(
+codCli int primary key auto_increment,
+nombre varchar(30) not null,
+correo varchar(30) not null,
+pas varchar(30) not null);
+
+
+insert into clientes values(null,'Jose Perez','jose@gmail.com','abc123');
+
+
+CREATE TABLE pedido(
+numPedido int primary key auto_increment,
+codCli varchar(100) not null references cliente(codcli),
+fecha date not null);
+
+
+CREATE TABLE detallePedido(
+numPedido int not null,
+codpro int not null,
+can int not null,
+foreign key(numPedido) references pedido(numPedido),
+foreign key (codpro) references productos(codpro));
